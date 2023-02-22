@@ -6,13 +6,6 @@ export * from './app/classes/main.class';
 export * from './app/app.controller';
 export * from './app/app.module';
 
-// filters
-export * from './filters/exception.module';
-export * from './filters/common-exception.filter';
-export * from './filters/http-exception.filter';
-export * from './filters/index-exception.filter';
-export * from './filters/internal-exception.filter';
-
 // sub modules
 export * from './modules/captcha/captcha.module';
 export * from './modules/captcha/captcha.guard';
@@ -34,8 +27,11 @@ export * from './modules/database/classes/soft-delete-entity-service.class';
 export * from './modules/emitter/emitter.service';
 export * from './modules/emitter/emitter.module';
 
-export * from './modules/exception/enums/code.enum';
-export * from './modules/exception/i18n/code.i18n';
+export * from './modules/exception/exception.module';
+export * from './modules/exception/common-exception.filter';
+export * from './modules/exception/http-exception.filter';
+export * from './modules/exception/index-exception.filter';
+export * from './modules/exception/internal-exception.filter';
 
 export * from './modules/http-auth/interfaces/auth-result.interface';
 export * from './modules/http-auth/http-auth.decorator';

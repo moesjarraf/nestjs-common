@@ -1,5 +1,5 @@
-import { ConfigService } from '../modules/config/config.service';
-import { LoggerService } from '../modules/logger/logger.service';
+import { ConfigService } from '../config/config.service';
+import { LoggerService } from '../logger/logger.service';
 import {
   ArgumentsHost,
   Catch,

@@ -3,8 +3,8 @@ import { InternalExceptionFilter } from './internal-exception.filter';
 import { IndexExceptionFilter } from './index-exception.filter';
 import { CommonExceptionFilter } from './common-exception.filter';
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '../modules/config/config.module';
-import { LoggerModule } from '../modules/logger/logger.module';
+import { ConfigModule } from '../config/config.module';
+import { LoggerModule } from '../logger/logger.module';
 
 export const ExceptionModuleConfig = {
   imports: [ConfigModule, LoggerModule],
