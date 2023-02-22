@@ -4,9 +4,11 @@ import { ConfigService } from '../config/config.service';
 
 @Injectable()
 export class HttpAuthService {
-  constructor(private readonly config: ConfigService) { }
+  constructor(private readonly config: ConfigService) {}
 
-  validate(token: string): ReturnType<typeof HttpAuthService.prototype.validateBearer> {
+  validate(
+    token: string,
+  ): ReturnType<typeof HttpAuthService.prototype.validateBearer> {
     if (token.match('bearer')) {
       return this.validateBearer(token);
     }

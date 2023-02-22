@@ -5,5 +5,5 @@ export const commonAppProviders = [
   {
     provide: APP_FILTER,
     useClass: IndexExceptionFilter,
-  }
+  },
 ];

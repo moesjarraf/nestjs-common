@@ -24,4 +24,4 @@ export const CaptchaModuleConfig = {
 };
 
 @Module(CaptchaModuleConfig)
-export class CaptchaModule { }
+export class CaptchaModule {}

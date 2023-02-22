@@ -6,9 +6,7 @@ import { fileExists } from '../utils/file-exists.util';
 
 @Controller()
 export class AppController {
-  constructor(
-    protected readonly config: ConfigService,
-  ) { }
+  constructor(protected readonly config: ConfigService) {}
 
   @Get()
   @ApiExcludeEndpoint()

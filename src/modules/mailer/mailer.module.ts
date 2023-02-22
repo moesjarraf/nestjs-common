@@ -7,15 +7,9 @@ import { ConfigModule } from '../config/config.module';
 export const MailerModuleConfig = {
   imports: [LoggerModule, ConfigModule],
   controllers: [],
-  providers: [
-    ...mailerProviders,
-    MailerService,
-  ],
-  exports: [
-    ...mailerProviders,
-    MailerService,
-  ],
+  providers: [...mailerProviders, MailerService],
+  exports: [...mailerProviders, MailerService],
 };
 
 @Module(MailerModuleConfig)
-export class MailerModule { }
+export class MailerModule {}

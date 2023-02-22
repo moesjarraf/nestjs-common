@@ -1,7 +1,11 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
-import { AppModuleConfig, DatabaseService, DB_DEFAULT_CONNECTION } from '../src';
+import {
+  AppModuleConfig,
+  DatabaseService,
+  DB_DEFAULT_CONNECTION,
+} from '../src';
 
 describe('Application e2e test', () => {
   let app: INestApplication;
@@ -9,9 +13,14 @@ describe('Application e2e test', () => {
   beforeAll(async () => {
     const module = await Test.createTestingModule(AppModuleConfig)
       .overrideProvider(DB_DEFAULT_CONNECTION)
-      .useFactory({ factory: (db: DatabaseService) => db.connect(), inject: [DatabaseService] })
+      .useFactory({
+        factory: (db: DatabaseService) => db.connect(),
+        inject: [DatabaseService],
+      })
       .compile();
-    app = module.createNestApplication(undefined, { logger: ['error', 'warn'] });
+    app = module.createNestApplication(undefined, {
+      logger: ['error', 'warn'],
+    });
     await app.init();
   }, 30000);
 

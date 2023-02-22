@@ -6,12 +6,7 @@ import { RECAPTCHA } from '../../constants';
 describe('CaptchaService', () => {
   let module: TestingModule;
   let captchaService: CaptchaService;
-  let spies: ReturnType<typeof spy>;
   let providers: ReturnType<typeof provide>;
-
-  function spy() {
-    return {};
-  }
 
   function provide() {
     const captchaInstance = jest.fn();
@@ -30,7 +25,6 @@ describe('CaptchaService', () => {
     await module.init();
 
     captchaService = module.get<CaptchaService>(CaptchaService);
-    spies = spy();
   });
 
   afterEach(async () => {

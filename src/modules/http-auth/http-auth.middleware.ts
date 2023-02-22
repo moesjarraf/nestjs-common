@@ -4,7 +4,7 @@ import { HttpAuthService } from './http-auth.service';
 
 @Injectable()
 export class HttpAuthMiddleware implements NestMiddleware {
-  constructor(private readonly httpAuth: HttpAuthService) { }
+  constructor(private readonly httpAuth: HttpAuthService) {}
 
   async use(req: Request, res: Response, next: NextFunction) {
     const token = req.header('authorization');

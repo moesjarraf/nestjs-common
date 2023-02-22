@@ -12,17 +12,33 @@ import { SSLModule } from './modules/ssl/ssl.module';
 
 export const CommonModuleConfig = {
   imports: [
-    ConfigModule, LoggerModule, RequestModule, EmitterModule, DatabaseModule,
-    SSLModule, MailerModule, HttpAuthModule, ExceptionModule, CaptchaModule,
+    ConfigModule,
+    LoggerModule,
+    RequestModule,
+    EmitterModule,
+    DatabaseModule,
+    SSLModule,
+    MailerModule,
+    HttpAuthModule,
+    ExceptionModule,
+    CaptchaModule,
   ],
   controllers: [],
   providers: [],
   exports: [
-    ConfigModule, LoggerModule, RequestModule, EmitterModule, DatabaseModule,
-    SSLModule, MailerModule, HttpAuthModule, ExceptionModule, CaptchaModule,
+    ConfigModule,
+    LoggerModule,
+    RequestModule,
+    EmitterModule,
+    DatabaseModule,
+    SSLModule,
+    MailerModule,
+    HttpAuthModule,
+    ExceptionModule,
+    CaptchaModule,
   ],
 };
 
 @Global()
 @Module(CommonModuleConfig)
-export class CommonModule { }
+export class CommonModule {}

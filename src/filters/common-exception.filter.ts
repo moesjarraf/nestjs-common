@@ -1,6 +1,12 @@
 import { ConfigService } from '../modules/config/config.service';
 import { LoggerService } from '../modules/logger/logger.service';
-import { ArgumentsHost, Catch, ExceptionFilter, HttpException, Injectable } from '@nestjs/common';
+import {
+  ArgumentsHost,
+  Catch,
+  ExceptionFilter,
+  HttpException,
+  Injectable,
+} from '@nestjs/common';
 import { HttpExceptionFilter } from './http-exception.filter';
 import { InternalExceptionFilter } from './internal-exception.filter';
 
@@ -13,7 +19,7 @@ export class CommonExceptionFilter implements ExceptionFilter {
     public readonly httpException: HttpExceptionFilter,
     public readonly internalException: InternalExceptionFilter,
   ) {
-    this.logger = this.logger.build(CommonExceptionFilter.name)
+    this.logger = this.logger.build(CommonExceptionFilter.name);
   }
 
   async catch(exception: Error, host: ArgumentsHost) {
