@@ -1,4 +1,4 @@
-import { ConfigService } from './../modules/config/config.service';
+import { ConfigService } from './../config/config.service';
 import {
   ArgumentsHost,
   Catch,
@@ -7,8 +7,8 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { HttpExceptionFilter } from './http-exception.filter';
-import { LoggerService } from '../modules/logger/logger.service';
-import { fileExists } from '../utils/file-exists.util';
+import { LoggerService } from '../logger/logger.service';
+import { fileExists } from '../../utils/file-exists.util';
 
 @Injectable()
 @Catch(HttpException)

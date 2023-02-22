@@ -1,9 +1,9 @@
 import { Global, Module } from '@nestjs/common';
-import { ExceptionModule } from './filters/exception.module';
 import { CaptchaModule } from './modules/captcha/captcha.module';
 import { ConfigModule } from './modules/config/config.module';
 import { DatabaseModule } from './modules/database/database.module';
 import { EmitterModule } from './modules/emitter/emitter.module';
+import { ExceptionModule } from './modules/exception/exception.module';
 import { HttpAuthModule } from './modules/http-auth/http-auth.module';
 import { LoggerModule } from './modules/logger/logger.module';
 import { MailerModule } from './modules/mailer/mailer.module';

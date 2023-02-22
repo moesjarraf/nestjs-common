@@ -4,6 +4,9 @@
   "description": "Nest.js common libraries",
   "author": "Moesjarraf J",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/index.js",
   "files": [
     "dist"
