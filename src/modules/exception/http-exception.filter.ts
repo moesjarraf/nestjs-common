@@ -1,12 +1,9 @@
-import { snakeCase } from 'snake-case';
-import { ExceptionCodeI18n } from './../modules/exception/i18n/code.i18n';
-import { LoggerService } from './../modules/logger/logger.service';
+import { LoggerService } from './../logger/logger.service';
 import {
   ArgumentsHost,
   Catch,
   ExceptionFilter,
   HttpException,
-  HttpStatus,
   Injectable,
 } from '@nestjs/common';
 import { InternalExceptionFilter } from './internal-exception.filter';
@@ -39,11 +36,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
         ? exResponse
         : exResponse.message || exResponse.error;
     const stack = exception.stack;
-    const locale = request.locale;
-    const type = typeof message === 'string' ? snakeCase(message) : undefined;
-    const translation =
-      ExceptionCodeI18n[type]?.[locale] ||
-      ExceptionCodeI18n[HttpStatus[type?.toUpperCase?.()]]?.[locale];
 
     this.logger.debug(
       `'[${method}] ${path} (${status})' failed with ${message}`,
@@ -56,9 +48,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
       path,
       method,
       code: status,
-      message: typeof message !== 'string' ? undefined : translation || message,
+      message,
       error: typeof message !== 'string' ? message : undefined,
-      type: translation ? type : undefined,
       time,
     });
   }

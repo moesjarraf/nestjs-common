@@ -5,7 +5,6 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { Request } from 'express';
-import { ExceptionCodeEnum } from '../exception/enums/code.enum';
 
 @Injectable()
 export class CaptchaGuard implements CanActivate {
@@ -17,9 +16,7 @@ export class CaptchaGuard implements CanActivate {
     }
 
     if (!(request as any).captchaValid) {
-      throw new BadRequestException(
-        ExceptionCodeEnum.InvalidCaptchaResponseGiven,
-      );
+      throw new BadRequestException('invalid_captcha');
     }
 
     return true;
