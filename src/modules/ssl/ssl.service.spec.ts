@@ -7,15 +7,12 @@ import { ConfigService } from '../config/config.service';
 describe('SSLService', () => {
   let module: TestingModule;
   let sslService: SSLService;
-  let configService: ConfigService;
 
   beforeEach(async () => {
-    module = await Test.createTestingModule(SSLModuleConfig)
-      .compile();
+    module = await Test.createTestingModule(SSLModuleConfig).compile();
     await module.init();
 
     sslService = module.get<SSLService>(SSLService);
-    configService = module.get<ConfigService>(ConfigService);
   });
 
   afterEach(async () => {
@@ -24,7 +21,9 @@ describe('SSLService', () => {
 
   describe('shouldRedirect', () => {
     it('should return false if ssl is disabled request', () => {
-      jest.spyOn(ConfigService.prototype, 'ssl', 'get').mockImplementation(() => ({ enabled: false }));
+      jest
+        .spyOn(ConfigService.prototype, 'ssl', 'get')
+        .mockImplementation(() => ({ enabled: false }));
 
       const req = httpMocks.createRequest({
         hostname: 'example.com',
@@ -39,7 +38,9 @@ describe('SSLService', () => {
     });
 
     it('should return false is hosname is localhost request', () => {
-      jest.spyOn(ConfigService.prototype, 'ssl', 'get').mockImplementation(() => ({ enabled: true }));
+      jest
+        .spyOn(ConfigService.prototype, 'ssl', 'get')
+        .mockImplementation(() => ({ enabled: true }));
 
       const req = httpMocks.createRequest({
         hostname: 'localhost',
@@ -54,7 +55,9 @@ describe('SSLService', () => {
     });
 
     it('should return false is path is health endpoint', () => {
-      jest.spyOn(ConfigService.prototype, 'ssl', 'get').mockImplementation(() => ({ enabled: true }));
+      jest
+        .spyOn(ConfigService.prototype, 'ssl', 'get')
+        .mockImplementation(() => ({ enabled: true }));
 
       const req = httpMocks.createRequest({
         hostname: 'example.com',
@@ -68,8 +71,10 @@ describe('SSLService', () => {
       expect(sslService.shouldRedirect(req)).toBeFalsy();
     });
 
-    it('should return true if it\'s an unsecure and not localhost request', () => {
-      jest.spyOn(ConfigService.prototype, 'ssl', 'get').mockImplementation(() => ({ enabled: true }));
+    it("should return true if it's an unsecure and not localhost request", () => {
+      jest
+        .spyOn(ConfigService.prototype, 'ssl', 'get')
+        .mockImplementation(() => ({ enabled: true }));
 
       const req = httpMocks.createRequest({
         hostname: 'example.com',

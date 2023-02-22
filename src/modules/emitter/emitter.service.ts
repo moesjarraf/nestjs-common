@@ -5,8 +5,6 @@ import { Subject } from 'rxjs';
 export class EmitterService<T> implements OnModuleDestroy {
   private subjects = new Map<string, Subject<any>>();
 
-  constructor() { }
-
   emit(event: keyof T, data: T[keyof T]) {
     // @todo: make it possible to await the emit so you can be notified if the listeners are all done
     const key = event as string;
@@ -34,7 +32,7 @@ export class EmitterService<T> implements OnModuleDestroy {
     const cb = (val: T[keyof T]) => {
       this.off(event, cb);
       return callback(val);
-    }
+    };
     this.on(event, cb);
   }
 
@@ -42,18 +40,21 @@ export class EmitterService<T> implements OnModuleDestroy {
     if (!this.subjects.has(event as string)) return;
 
     const { observers } = this.subjects.get(event as string);
-    const index = observers
-      .findIndex((ob: any) => ob._subscriptions.some(any => any.subscriber.destination._next === callback))
+    const index = observers.findIndex((ob: any) =>
+      ob._subscriptions.some(
+        (any) => any.subscriber.destination._next === callback,
+      ),
+    );
 
     if (index > -1) observers.splice(index, 1);
   }
 
   waitFor(event: keyof T) {
-    return new Promise(resolve => this.once(event, resolve))
+    return new Promise((resolve) => this.once(event, resolve));
   }
 
   onModuleDestroy() {
-    for (const [key, subject] of this.subjects) {
+    for (const [, subject] of this.subjects) {
       subject.unsubscribe();
     }
 

@@ -5,19 +5,10 @@ import { Module } from '@nestjs/common';
 import { SSLMiddleware } from './ssl.middleware';
 
 export const SSLModuleConfig = {
-  imports: [
-    ConfigModule,
-    LoggerModule,
-  ],
-  providers: [
-    SSLMiddleware,
-    SSLService,
-  ],
-  exports: [
-    SSLMiddleware,
-    SSLService,
-  ],
+  imports: [ConfigModule, LoggerModule],
+  providers: [SSLMiddleware, SSLService],
+  exports: [SSLMiddleware, SSLService],
 };
 
 @Module(SSLModuleConfig)
-export class SSLModule { }
+export class SSLModule {}

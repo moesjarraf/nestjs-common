@@ -7,17 +7,9 @@ import { ConfigModule } from '../config/config.module';
 export const LoggerModuleConfig = {
   imports: [ConfigModule],
   controllers: [],
-  providers: [
-    ...loggerProviders,
-    LoggerBuilderService,
-    LoggerService,
-  ],
-  exports: [
-    ...loggerProviders,
-    LoggerBuilderService,
-    LoggerService,
-  ],
+  providers: [...loggerProviders, LoggerBuilderService, LoggerService],
+  exports: [...loggerProviders, LoggerBuilderService, LoggerService],
 };
 
 @Module(LoggerModuleConfig)
-export class LoggerModule { }
+export class LoggerModule {}

@@ -15,9 +15,6 @@ export const AppModuleConfig = {
 @Module(AppModuleConfig)
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(
-      SSLMiddleware,
-      HttpAuthMiddleware,
-    ).forRoutes('*');
+    consumer.apply(SSLMiddleware, HttpAuthMiddleware).forRoutes('*');
   }
 }

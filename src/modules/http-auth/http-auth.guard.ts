@@ -1,5 +1,10 @@
 import { HttpAuthResultInterface } from './interfaces/auth-result.interface';
-import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  CanActivate,
+  ExecutionContext,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { Request } from 'express';
 
 @Injectable()

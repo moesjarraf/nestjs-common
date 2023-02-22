@@ -15,8 +15,7 @@ describe('LoggerService', () => {
   }
 
   beforeEach(async () => {
-    module = await Test.createTestingModule(LoggerModuleConfig)
-      .compile();
+    module = await Test.createTestingModule(LoggerModuleConfig).compile();
     await module.init();
 
     loggerService = module.get<LoggerService>(LoggerService);
@@ -24,10 +23,6 @@ describe('LoggerService', () => {
 
   afterEach(async () => {
     await module.close();
-  });
-
-  describe('log()', () => {
-    test.skip('should log with given level', async () => { });
   });
 
   describe('info()', () => {

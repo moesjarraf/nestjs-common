@@ -11,7 +11,7 @@ export class CaptchaService {
     private readonly logger: LoggerService,
     @Inject(RECAPTCHA) private readonly recaptcha: typeof recaptcha2,
   ) {
-    this.logger = this.logger.build(CaptchaService.name)
+    this.logger = this.logger.build(CaptchaService.name);
   }
 
   isEnabled(): boolean {
@@ -32,7 +32,9 @@ export class CaptchaService {
     });
   }
 
-  async validate(response: string): Promise<{ success: boolean, errors: string[] }> {
+  async validate(
+    response: string,
+  ): Promise<{ success: boolean; errors: string[] }> {
     const result = { success: true, errors: [] };
 
     if (!this.isEnabled()) {

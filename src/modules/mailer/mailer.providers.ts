@@ -1,2 +1,1 @@
-export const mailerProviders = [
-];
+export const mailerProviders = [];

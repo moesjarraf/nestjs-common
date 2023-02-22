@@ -11,13 +11,13 @@ describe('RequestService', () => {
 
   function spy() {
     const http = {
-      request: jest.spyOn(httpService, 'request')
-        .mockImplementation(() => {
-          const getPromise = () => new Promise(
-            resolve => setTimeout(() => resolve({status: 200, body: 'foo'}), 200)
+      request: jest.spyOn(httpService, 'request').mockImplementation(() => {
+        const getPromise = () =>
+          new Promise((resolve) =>
+            setTimeout(() => resolve({ status: 200, body: 'foo' }), 200),
           );
-          return from(getPromise()) as Observable<any>;
-        }),
+        return from(getPromise()) as Observable<any>;
+      }),
     };
 
     return { http };
@@ -44,7 +44,10 @@ describe('RequestService', () => {
       expect(await requestService.get(url)).toEqual(response);
 
       expect(spies.http.request.mock.calls.length).toBe(1);
-      expect(spies.http.request.mock.calls[0][0]).toEqual({ method: 'get', url });
+      expect(spies.http.request.mock.calls[0][0]).toEqual({
+        method: 'get',
+        url,
+      });
     });
   });
 
@@ -57,7 +60,10 @@ describe('RequestService', () => {
       expect(await requestService.delete(url)).toEqual(response);
 
       expect(spies.http.request.mock.calls.length).toBe(1);
-      expect(spies.http.request.mock.calls[0][0]).toEqual({ method: 'delete', url });
+      expect(spies.http.request.mock.calls[0][0]).toEqual({
+        method: 'delete',
+        url,
+      });
     });
   });
 
@@ -70,7 +76,10 @@ describe('RequestService', () => {
       expect(await requestService.head(url)).toEqual(response);
 
       expect(spies.http.request.mock.calls.length).toBe(1);
-      expect(spies.http.request.mock.calls[0][0]).toEqual({ method: 'head', url });
+      expect(spies.http.request.mock.calls[0][0]).toEqual({
+        method: 'head',
+        url,
+      });
     });
   });
 
@@ -83,7 +92,10 @@ describe('RequestService', () => {
       expect(await requestService.post(url)).toEqual(response);
 
       expect(spies.http.request.mock.calls.length).toBe(1);
-      expect(spies.http.request.mock.calls[0][0]).toEqual({ method: 'post', url });
+      expect(spies.http.request.mock.calls[0][0]).toEqual({
+        method: 'post',
+        url,
+      });
     });
   });
 
@@ -96,7 +108,10 @@ describe('RequestService', () => {
       expect(await requestService.put(url)).toEqual(response);
 
       expect(spies.http.request.mock.calls.length).toBe(1);
-      expect(spies.http.request.mock.calls[0][0]).toEqual({ method: 'put', url });
+      expect(spies.http.request.mock.calls[0][0]).toEqual({
+        method: 'put',
+        url,
+      });
     });
   });
 
@@ -109,7 +124,10 @@ describe('RequestService', () => {
       expect(await requestService.patch(url)).toEqual(response);
 
       expect(spies.http.request.mock.calls.length).toBe(1);
-      expect(spies.http.request.mock.calls[0][0]).toEqual({ method: 'patch', url });
+      expect(spies.http.request.mock.calls[0][0]).toEqual({
+        method: 'patch',
+        url,
+      });
     });
   });
 });

@@ -6,17 +6,9 @@ import { HttpAuthService } from './http-auth.service';
 
 export const HttpAuthModuleConfig = {
   imports: [ConfigModule],
-  providers: [
-    HttpAuthService,
-    HttpAuthMiddleware,
-    HttpAuthGuard,
-  ],
-  exports: [
-    HttpAuthService,
-    HttpAuthMiddleware,
-    HttpAuthGuard,
-  ],
+  providers: [HttpAuthService, HttpAuthMiddleware, HttpAuthGuard],
+  exports: [HttpAuthService, HttpAuthMiddleware, HttpAuthGuard],
 };
 
 @Module(HttpAuthModuleConfig)
-export class HttpAuthModule { }
+export class HttpAuthModule {}

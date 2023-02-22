@@ -16,16 +16,20 @@ describe('HttpAuthService', () => {
 
   describe('validateBearer()', () => {
     test('should return true if a token is correct', () => {
-      const token = 'A0qA!YGeE!F2uNsbMl$BVw52StGgDNHv@K6j6i3iilr1qWvB*P4nm2KkjbvVu55U';
-      jest.spyOn(ConfigService.prototype, 'http_auth', 'get').mockImplementation(() => ({ bearer_token: token }));
-
+      const token =
+        'A0qA!YGeE!F2uNsbMl$BVw52StGgDNHv@K6j6i3iilr1qWvB*P4nm2KkjbvVu55U';
+      jest
+        .spyOn(ConfigService.prototype, 'http_auth', 'get')
+        .mockImplementation(() => ({ bearer_token: token }));
 
       expect(authService.validateBearer(token)).toEqual({ authorized: true });
     });
 
     test('should return false if a token is incorrect', () => {
       const token = 'test';
-      jest.spyOn(ConfigService.prototype, 'http_auth', 'get').mockImplementation(() => ({ bearer_token: 'test1234' }));
+      jest
+        .spyOn(ConfigService.prototype, 'http_auth', 'get')
+        .mockImplementation(() => ({ bearer_token: 'test1234' }));
 
       expect(authService.validateBearer(token)).toEqual({ authorized: false });
     });

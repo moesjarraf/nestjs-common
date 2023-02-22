@@ -18,9 +18,8 @@ export class ConfigService extends NestConfigService {
 
     return {
       env: nodeEnv,
-      isEnv: (env: string | string[]) => typeof env === 'string' ?
-        env === nodeEnv :
-        env.includes(nodeEnv),
+      isEnv: (env: string | string[]) =>
+        typeof env === 'string' ? env === nodeEnv : env.includes(nodeEnv),
     };
   }
 
@@ -39,16 +38,17 @@ export class ConfigService extends NestConfigService {
     return {
       index: indexFullPath,
       dist: indexFullPath ? dirname(indexFullPath) : undefined,
-    }
+    };
   }
 
   get cors() {
     const origin = (this.get<string>('CORS_ORIGIN') || '*')
       .split(',')
-      .map((string) => string !== '*' ? new RegExp(string) : string);
+      .map((string) => (string !== '*' ? new RegExp(string) : string));
 
     const credentials = boolean(this.get<string>('CORS_CREDENTIALS')) || false;
-    const exposedHeaders = this.get<string>('CORS_EXPOSED_HEADERS') || undefined;
+    const exposedHeaders =
+      this.get<string>('CORS_EXPOSED_HEADERS') || undefined;
 
     return {
       origin,
@@ -58,13 +58,15 @@ export class ConfigService extends NestConfigService {
   }
 
   get body_parser() {
-    const paths = (this.get<string>('BODY_PARSER_RAW_PATHS') || '');
+    const paths = this.get<string>('BODY_PARSER_RAW_PATHS') || '';
 
     return {
-      isRawPath: (path) => paths.split(',')
-        .map((item) => path.match(item))
-        .filter((item) => Boolean(item)),
-    }
+      isRawPath: (path) =>
+        paths
+          .split(',')
+          .map((item) => path.match(item))
+          .filter((item) => Boolean(item)),
+    };
   }
 
   get captcha() {
@@ -77,7 +79,9 @@ export class ConfigService extends NestConfigService {
 
   get mongo() {
     return {
-      default_url: this.get<string>('MONGO_DEFAULT_URL') || 'mongodb://0.0.0.0:27017/nestjs',
+      default_url:
+        this.get<string>('MONGO_DEFAULT_URL') ||
+        'mongodb://0.0.0.0:27017/nestjs',
     };
   }
 
@@ -112,7 +116,7 @@ export class ConfigService extends NestConfigService {
         user: this.get<string>('MAILER_USER'),
         pass: this.get<string>('MAILER_PASS'),
       },
-    }
+    };
   }
 
   get ssl() {

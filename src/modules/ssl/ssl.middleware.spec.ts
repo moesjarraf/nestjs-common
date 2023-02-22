@@ -2,14 +2,12 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { SSLMiddleware } from './ssl.middleware';
 import { SSLService } from './ssl.service';
 import { SSLModuleConfig } from './ssl.module';
-import { ConfigService } from '../config/config.service';
 import httpMocks from 'node-mocks-http';
 
 describe('SSLMiddleware', () => {
   let module: TestingModule;
   let sslMiddleware: SSLMiddleware;
   let sslService: SSLService;
-  let configService: ConfigService;
 
   beforeEach(async () => {
     module = await Test.createTestingModule(SSLModuleConfig).compile();
@@ -17,7 +15,6 @@ describe('SSLMiddleware', () => {
 
     sslMiddleware = module.get<SSLMiddleware>(SSLMiddleware);
     sslService = module.get<SSLService>(SSLService);
-    configService = module.get<ConfigService>(ConfigService);
   });
 
   afterEach(() => {

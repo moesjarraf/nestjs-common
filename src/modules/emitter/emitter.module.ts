@@ -7,15 +7,9 @@ import { ConfigModule } from '../config/config.module';
 export const EmitterModuleConfig = {
   imports: [LoggerModule, ConfigModule],
   controllers: [],
-  providers: [
-    ...emitterProviders,
-    EmitterService,
-  ],
-  exports: [
-    ...emitterProviders,
-    EmitterService,
-  ],
+  providers: [...emitterProviders, EmitterService],
+  exports: [...emitterProviders, EmitterService],
 };
 
 @Module(EmitterModuleConfig)
-export class EmitterModule { }
+export class EmitterModule {}

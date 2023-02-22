@@ -7,10 +7,7 @@ import { ConfigModule } from '../modules/config/config.module';
 import { LoggerModule } from '../modules/logger/logger.module';
 
 export const ExceptionModuleConfig = {
-  imports: [
-    ConfigModule,
-    LoggerModule,
-  ],
+  imports: [ConfigModule, LoggerModule],
   controllers: [],
   providers: [
     HttpExceptionFilter,
@@ -27,4 +24,4 @@ export const ExceptionModuleConfig = {
 };
 
 @Module(ExceptionModuleConfig)
-export class ExceptionModule { }
+export class ExceptionModule {}

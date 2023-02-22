@@ -28,7 +28,9 @@ export class LoggerBuilderService {
 
   createLogger(): winston.Logger {
     const formats = [
-      this._winston.format.label({ label: pascalCase(this.config.app.short_name) }),
+      this._winston.format.label({
+        label: pascalCase(this.config.app.short_name),
+      }),
       this._winston.format.timestamp({ format: 'DD/MM/YY hh:mm:ss' }),
       this._winston.format.printf((info) => {
         const msg = [
@@ -36,17 +38,24 @@ export class LoggerBuilderService {
             LoggerColorUtils.clc.cyanBright(`[${info.label}] `),
             `<${info.timestamp}>\t`,
             `${info.level}\t`,
-            info.context ? LoggerColorUtils.clc.yellow(`[${info.context}] `) : '',
+            info.context
+              ? LoggerColorUtils.clc.yellow(`[${info.context}] `)
+              : '',
             `${info.message}`,
-          ].join('')
+          ].join(''),
         ];
 
         for (const key in info) {
-          if (['timestamp', 'message', 'level', 'label', 'context'].indexOf(key) > -1) {
+          if (
+            ['timestamp', 'message', 'level', 'label', 'context'].indexOf(key) >
+            -1
+          ) {
             continue;
           }
 
-          const value = util.isString(info[key]) ? info[key] : Flatted.stringify(info[key], null, 2);
+          const value = util.isString(info[key])
+            ? info[key]
+            : Flatted.stringify(info[key], null, 2);
           msg.push(`\n${key}:\n${value}\n`);
         }
 
@@ -58,7 +67,7 @@ export class LoggerBuilderService {
       new this._winston.transports.Console({
         level: this.config.logger.level,
         format: this._winston.format.combine(
-          this._winston.format(info => {
+          this._winston.format((info) => {
             info.level = `<${info.level}>`;
             return info;
           })(),
@@ -66,22 +75,24 @@ export class LoggerBuilderService {
           ...formats,
         ),
         handleExceptions: true,
-      })
+      }),
     ];
 
     const rollbar = this.config.rollbar;
     if (rollbar.access_token) {
-      transports.push(new RollbarTransport({
-        rollbarConfig: {
-          accessToken: rollbar.access_token,
-          environment: rollbar.environment || this.config.node.env,
-          reportLevel: rollbar.level || 'warn',
-          captureUncaught: true,
-          captureUnhandledRejections: true,
-          uncaughtErrorLevel: 'critical',
-        },
-        level: rollbar.level || 'warn',
-      }));
+      transports.push(
+        new RollbarTransport({
+          rollbarConfig: {
+            accessToken: rollbar.access_token,
+            environment: rollbar.environment || this.config.node.env,
+            reportLevel: rollbar.level || 'warn',
+            captureUncaught: true,
+            captureUnhandledRejections: true,
+            uncaughtErrorLevel: 'critical',
+          },
+          level: rollbar.level || 'warn',
+        }),
+      );
     }
 
     return this._winston.createLogger({

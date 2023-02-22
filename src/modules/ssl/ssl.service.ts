@@ -4,12 +4,15 @@ import { Request } from 'express';
 
 @Injectable()
 export class SSLService {
-  constructor(
-    private readonly config: ConfigService,
-  ) {}
+  constructor(private readonly config: ConfigService) {}
 
   public shouldRedirect(req: Request): boolean {
-    return this.config.ssl.enabled && this.isNotLocal(req) && this.isNotHealthEndpoint(req) && this.isNotSecure(req);
+    return (
+      this.config.ssl.enabled &&
+      this.isNotLocal(req) &&
+      this.isNotHealthEndpoint(req) &&
+      this.isNotSecure(req)
+    );
   }
 
   protected isNotHealthEndpoint(req: Request): boolean {

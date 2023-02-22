@@ -6,21 +6,11 @@ import { ConfigModule } from '../config/config.module';
 import { HttpModule } from '@nestjs/axios';
 
 export const RequestModuleConfig = {
-  imports: [
-    LoggerModule,
-    ConfigModule,
-    HttpModule
-  ],
+  imports: [LoggerModule, ConfigModule, HttpModule],
   controllers: [],
-  providers: [
-    ...requestProviders,
-    RequestService,
-  ],
-  exports: [
-    ...requestProviders,
-    RequestService,
-  ],
+  providers: [...requestProviders, RequestService],
+  exports: [...requestProviders, RequestService],
 };
 
 @Module(RequestModuleConfig)
-export class RequestModule { }
+export class RequestModule {}

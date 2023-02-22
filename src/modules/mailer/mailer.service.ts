@@ -1,10 +1,10 @@
 import { LoggerService } from './../logger/logger.service';
 import { ConfigService } from './../config/config.service';
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import nodemailer from 'nodemailer';
 
 @Injectable()
-export class MailerService implements OnModuleInit {
+export class MailerService {
   // @note: uses lazyloading: do not use directly, instead use getTransporter()
   private transporter: nodemailer.Transporter;
 
@@ -12,10 +12,7 @@ export class MailerService implements OnModuleInit {
     private readonly config: ConfigService,
     private readonly logger: LoggerService,
   ) {
-    this.logger = this.logger.build(MailerService.name)
-  }
-
-  async onModuleInit() {
+    this.logger = this.logger.build(MailerService.name);
   }
 
   async getTransporter(): Promise<nodemailer.Transporter> {
@@ -29,7 +26,9 @@ export class MailerService implements OnModuleInit {
     return this.transporter;
   }
 
-  async createAccount(options: nodemailer.TransportOptions): Promise<nodemailer.Transporter> {
+  async createAccount(
+    options: nodemailer.TransportOptions,
+  ): Promise<nodemailer.Transporter> {
     return nodemailer.createTransport(options);
   }
 
@@ -42,23 +41,29 @@ export class MailerService implements OnModuleInit {
       secure: false,
       auth: {
         user: testAccount.user,
-        pass: testAccount.pass
-      }
+        pass: testAccount.pass,
+      },
     });
   }
 
   async sendMail(options: nodemailer.SendMailOptions) {
     const transporter = await this.getTransporter();
     if (!transporter) {
-      this.logger.debug(`skip sending mail '${options.from}' to '${options.to}'`);
+      this.logger.debug(
+        `skip sending mail '${options.from}' to '${options.to}'`,
+      );
       return;
     }
     const info = await transporter.sendMail(options);
 
-    this.logger.debug(`send mail from '${options.from}' to '${options.to}' got result '${info.response}'`);
+    this.logger.debug(
+      `send mail from '${options.from}' to '${options.to}' got result '${info.response}'`,
+    );
 
     if (this.config.mailer.test) {
-      this.logger.debug(`sent mail ${info.messageId} ${nodemailer.getTestMessageUrl(info)}`);
+      this.logger.debug(
+        `sent mail ${info.messageId} ${nodemailer.getTestMessageUrl(info)}`,
+      );
     }
   }
 }
