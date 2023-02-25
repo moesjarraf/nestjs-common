@@ -28,7 +28,10 @@ export class ConfigService extends NestConfigService {
   }
 
   get debug() {
-    return boolean(this.get<string>('DEBUG')) || true;
+    return (
+      boolean(this.get<string>('DEBUG')) ||
+      (this.node.isEnv('production') ? false : true)
+    );
   }
 
   get frontend() {

@@ -7,7 +7,6 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { HttpExceptionFilter } from './http-exception.filter';
-import { LoggerService } from '../logger/logger.service';
 import { fileExists } from '../../utils/file-exists.util';
 
 @Injectable()
@@ -16,10 +15,7 @@ export class IndexExceptionFilter implements ExceptionFilter {
   constructor(
     private readonly config: ConfigService,
     private readonly httpException: HttpExceptionFilter,
-    private readonly logger: LoggerService,
-  ) {
-    this.logger = logger.build(IndexExceptionFilter.name);
-  }
+  ) {}
 
   async catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
