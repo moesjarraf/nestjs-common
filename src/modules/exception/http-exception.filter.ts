@@ -6,23 +6,15 @@ import {
   HttpException,
   Injectable,
 } from '@nestjs/common';
-import { InternalExceptionFilter } from './internal-exception.filter';
 
 @Injectable()
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
-  constructor(
-    private readonly logger: LoggerService,
-    private readonly internalException: InternalExceptionFilter,
-  ) {
+  constructor(private readonly logger: LoggerService) {
     this.logger = this.logger.build(HttpExceptionFilter.name);
   }
 
   async catch(exception: HttpException, host: ArgumentsHost) {
-    if (!(exception instanceof HttpException)) {
-      return this.internalException.catch(exception, host);
-    }
-
     const time = new Date().toISOString();
     const ctx = host.switchToHttp();
     const response = ctx.getResponse();

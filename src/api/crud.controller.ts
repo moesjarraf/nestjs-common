@@ -7,17 +7,17 @@ import {
   Param,
   NotFoundException,
   HttpCode,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { DatabaseEntity } from '../modules/database/classes/entity.class';
 import { DatabaseEntityService } from '../modules/database/classes/entity-service.class';
-import { BaseApiController } from './base.controller';
 
-export abstract class CrudApiController extends BaseApiController {
+@UsePipes(new ValidationPipe({ whitelist: true }))
+export abstract class CrudApiController {
   constructor(
     protected readonly service: DatabaseEntityService<DatabaseEntity>,
-  ) {
-    super();
-  }
+  ) {}
 
   @Get()
   async list(@Query() query) {

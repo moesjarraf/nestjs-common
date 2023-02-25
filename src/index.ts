@@ -23,6 +23,7 @@ export * from './modules/database/classes/repository.class';
 export * from './modules/database/classes/soft-delete-repository.class';
 export * from './modules/database/classes/entity-service.class';
 export * from './modules/database/classes/soft-delete-entity-service.class';
+export * from './modules/database/functions/create-provider.function';
 
 export * from './modules/emitter/emitter.service';
 export * from './modules/emitter/emitter.module';
@@ -57,8 +58,8 @@ export * from './modules/ssl/ssl.service';
 export * from './modules/ssl/ssl.module';
 
 // api
-export * from './api/base.controller';
 export * from './api/crud.controller';
+export * from './api/create-crud-controller.function';
 export * from './api/search.api';
 export * from './api/get-by-id.api';
 
