@@ -35,7 +35,8 @@ export class ConfigService extends NestConfigService {
   }
 
   get frontend() {
-    const index = this.get<string>('FRONTEND_INDEX') || '';
+    const index =
+      this.get<string>('FRONTEND_INDEX') || '../frontend/dist/index.html';
     const indexFullPath = index ? join(process.cwd(), index) : undefined;
 
     return {
