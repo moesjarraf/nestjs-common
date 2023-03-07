@@ -61,6 +61,21 @@ export class ConfigService extends NestConfigService {
     };
   }
 
+  get cookie() {
+    const sameSite = this.get<string>('COOKIE_SAME_SITE');
+    const secure = this.get<string>('COOKIE_SECURE');
+
+    return {
+      cookie: {
+        same_site:
+          sameSite && boolean(sameSite)
+            ? boolean(sameSite)
+            : sameSite || undefined,
+        secure: secure ? boolean(secure) : undefined,
+      },
+    };
+  }
+
   get body_parser() {
     const paths = this.get<string>('BODY_PARSER_RAW_PATHS') || '';
 
