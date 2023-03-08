@@ -86,14 +86,6 @@ export class ConfigService extends NestConfigService {
     };
   }
 
-  get captcha() {
-    return {
-      site_key: this.get<string>('CAPTCHA_SITE_KEY'),
-      secret_key: this.get<string>('CAPTCHA_SITE_KEY'),
-      enabled: boolean(this.get<string>('CAPTCHA_ENABLED')),
-    };
-  }
-
   get mongo() {
     return {
       default_url:

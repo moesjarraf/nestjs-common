@@ -7,11 +7,6 @@ export * from './app/app.controller';
 export * from './app/app.module';
 
 // sub modules
-export * from './modules/captcha/captcha.module';
-export * from './modules/captcha/captcha.guard';
-export * from './modules/captcha/captcha.middleware';
-export * from './modules/captcha/captcha.service';
-
 export * from './modules/config/config.module';
 export * from './modules/config/config.service';
 

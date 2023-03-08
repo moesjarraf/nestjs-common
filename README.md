@@ -1,6 +1,4 @@
-## Description
-
-[Nest.js](https://github.com/nestjs/nest) common libraries.
+[Nest.js](https://github.com/nestjs/nest) common libraries
 
 ## Installation
 

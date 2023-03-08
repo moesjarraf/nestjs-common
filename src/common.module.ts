@@ -1,5 +1,4 @@
 import { Global, Module } from '@nestjs/common';
-import { CaptchaModule } from './modules/captcha/captcha.module';
 import { ConfigModule } from './modules/config/config.module';
 import { DatabaseModule } from './modules/database/database.module';
 import { EmitterModule } from './modules/emitter/emitter.module';
@@ -21,7 +20,6 @@ export const CommonModuleConfig = {
     MailerModule,
     HttpAuthModule,
     ExceptionModule,
-    CaptchaModule,
   ],
   controllers: [],
   providers: [],
@@ -35,7 +33,6 @@ export const CommonModuleConfig = {
     MailerModule,
     HttpAuthModule,
     ExceptionModule,
-    CaptchaModule,
   ],
 };
 
