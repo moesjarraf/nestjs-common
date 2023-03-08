@@ -66,13 +66,11 @@ export class ConfigService extends NestConfigService {
     const secure = this.get<string>('COOKIE_SECURE');
 
     return {
-      cookie: {
-        same_site:
-          sameSite && boolean(sameSite)
-            ? boolean(sameSite)
-            : sameSite || undefined,
-        secure: secure ? boolean(secure) : undefined,
-      },
+      same_site:
+        sameSite && boolean(sameSite)
+          ? boolean(sameSite)
+          : sameSite || undefined,
+      secure: secure ? boolean(secure) : undefined,
     };
   }
 
